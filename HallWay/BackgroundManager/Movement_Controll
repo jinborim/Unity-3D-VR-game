@@ -1,0 +1,25 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class Movement_Controll : MonoBehaviour
+{
+
+    public static void Move_Stop()
+    {
+        // 모든 움직임 멈춤
+        CharacterMovement.is_movable = false;
+        MouseMove.mouse_able = false;
+        Inventory.inventory_able = false;
+    }
+
+    public static void Move_Start()
+    {
+        //모든 움직임 정지 해제
+        CharacterMovement.is_movable = true;
+        MouseMove.mouse_able = true;
+        Inventory.inventory_able = true;
+    }
+
+    
+}
