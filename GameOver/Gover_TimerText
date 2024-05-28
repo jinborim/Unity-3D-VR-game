@@ -1,0 +1,41 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+
+public class Gover_TimerText : MonoBehaviour
+{
+    public int countdown;
+    public float delta = 0;
+    [SerializeField]
+    Text Countdown_Txt;
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        Movement_Controll.Move_Stop();
+        Countdown_Txt.text = countdown + "초 후에 게임 재 시작";
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        delta += Time.deltaTime;
+        if (countdown == 0)
+        {
+            //Debug.Log("끝");
+            Movement_Controll.Move_Start();
+            SceneManager.LoadScene("HallWay");
+        }
+        if (delta >= 1)
+        {
+            delta = 0;
+            Countdown_Txt.text = null;
+            countdown = countdown-1;
+            Countdown_Txt.text = countdown + "초 후에 게임 재 시작";
+        }
+    }
+
+    
+}
