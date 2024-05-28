@@ -2,8 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ItemPickup : MonoBehaviour
+public class Readable : MonoBehaviour
 {
-    public Item item;
+    [TextArea]
+    public string Read_Text;
 
 }
