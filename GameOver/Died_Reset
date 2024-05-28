@@ -1,0 +1,30 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class Died_Reset : MonoBehaviour
+{
+    [SerializeField]
+    Item item;
+    Inventory theInventory;
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        theInventory = GameObject.FindObjectOfType<Inventory>();
+        if (Inventory_Checking.InventoryChecking(item) != true)
+        {
+            theInventory.AcquireItem(item);
+        }
+        else if(Inventory_Checking.InventoryChecking(item) == true)
+        {
+            Debug.Log("카드 아직 있음");
+        }
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        
+    }
+}
