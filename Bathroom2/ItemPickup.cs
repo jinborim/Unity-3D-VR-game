@@ -2,8 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class hint2 : MonoBehaviour
+public class ItemPickup : MonoBehaviour
 {
-    public Item hint2;
+    public Item item;
 
 }
