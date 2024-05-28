@@ -2,8 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class hint2 : MonoBehaviour
+public class hint3 : MonoBehaviour
 {
-    public Item hint2;
+    public Item hint3;
 
 }
