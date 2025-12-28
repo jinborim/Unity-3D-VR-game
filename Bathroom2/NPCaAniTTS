@@ -1,0 +1,57 @@
+using Systme.Collections;
+
+public class NPCAniTTS : MonoBehaviour
+{
+  [Header]
+  public Animator npcAnimator; // Mixamo 애니메이션이 들어 있는 Animator
+  public AudioSource ttsAudio; // TTS 음성 파일이 재생될 오디오 소스
+  public Dialog_Test dialogSysteml; //기존에 만든 타이핑 스크립트 참조
+
+  public string[] introDialogue; // 시작하자마자 나올 대사들
+  public string animTriggerName = "isTalking"; //애니메이션 파라미터 이름
+
+  void Start()
+{
+  //스테이지 로드와 동시에 연출 시작
+  StartCoroutione(StartCinematicSequence());
+}
+
+IEnumerator StartCinematicSequence()
+{
+  // 1. 잠시 대기 (화면 페이드 인 시간 등 고려) 코루틴 사용
+  yield return new WaitForSeconds(1.0f);
+
+  // 2. 애니메이션 실행 (Mixamo 애니메이션 실행)
+  if (npcAnimator != null)
+  {
+      npcAnimator.SetBool(animTriggerName, true);
+  }
+
+  // 3. TTS 음성 재생
+  if (ttsAudio != null && ttsAudio.clip != null)
+  {
+      ttsAudio.Play();
+  }
+
+  // 4. 타이핑 대사 출력 호출
+  // 기존 Dialog_Test의 Typing_trigger 함수를 호출하여 대사창을 띄웁니다.
+  if (dialogSystem != null)
+  {
+  // NPC 대화창 오브젝트를 먼저 활성화 (필요 시)
+  dialogSystem.dialogObj.SetActive(true);
+  dialogSystem.Typing_trigger(introDialogue, false);
+  }
+
+        // 5. 음성이 끝날 때까지 대기 (음성 길이에 맞춤)
+        if (ttsAudio != null && ttsAudio.clip != null)
+        {
+            yield return new WaitForSeconds(ttsAudio.clip.length);
+        }
+
+        // 6. 연출 종료 및 애니메이션 복귀
+        if (npcAnimator != null)
+        {
+            npcAnimator.SetBool(animTriggerName, false);
+        }
+    }
+}
