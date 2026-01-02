@@ -38,7 +38,7 @@ public class CabinetOpen_br : MonoBehaviour, IPointerClickHandler
     {
         if (eventData.button == PointerEventData.InputButton.Right)
         {
-            //Debug.Log("포인터 테스트");
+            
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
 
@@ -46,11 +46,8 @@ public class CabinetOpen_br : MonoBehaviour, IPointerClickHandler
             {
                 if (is_locked != true)
                 {
-                    //Debug.Log("터치된 오브젝트: " + hit.transform.name);
                     if (is_activated == false)
                     {
-                        //this.gameObject.GetComponent<MeshRenderer>().material = mat[0];
-                        //StartCoroutine(Open_Door());
                         hit.transform.gameObject.GetComponent<CabinetOpen_br>().Open_Door();
                         EAM.Effect_Sound("CabinetOpen");
                         is_activated = true;
@@ -58,8 +55,6 @@ public class CabinetOpen_br : MonoBehaviour, IPointerClickHandler
 
                     else if (is_activated == true)
                     {
-                        //this.gameObject.GetComponent<MeshRenderer>().material = mat[1];
-                        //StartCoroutine(Close_Door());
                         hit.transform.gameObject.GetComponent<CabinetOpen_br>().Close_Door();
                         EAM.Effect_Sound("CabinetClose");
                         is_activated = false;
@@ -67,7 +62,6 @@ public class CabinetOpen_br : MonoBehaviour, IPointerClickHandler
                 }
                 else if (is_locked == true)
                 {
-                    //Debug.Log("뵤");
                     if (Inventory_Checking.InventoryChecking(lockKey.Key) == true)
                     {
                         EAM.Effect_Sound("Unlock");
